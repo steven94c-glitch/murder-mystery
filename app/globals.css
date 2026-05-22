@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy: #0a0e1a;
+  --navy-light: #111827;
+  --gold: #c9a84c;
+  --gold-light: #e0c068;
+  --seafoam: #2d9e8d;
+  --seafoam-light: #3ab8a5;
+  --crimson: #8b1a1a;
+  --crimson-light: #b02222;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background-color: var(--navy);
+  color: #e8dcc8;
+  font-family: Georgia, Cambria, 'Times New Roman', serif;
+  min-height: 100vh;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #111827;
+}
+::-webkit-scrollbar-thumb {
+  background: #c9a84c55;
+  border-radius: 3px;
+}
+
+/* Typography helpers */
+.text-gold {
+  color: var(--gold);
+}
+.text-seafoam {
+  color: var(--seafoam);
+}
+.text-crimson {
+  color: var(--crimson-light);
+}
+
+/* Atmospheric background gradient */
+.bg-atmosphere {
+  background: radial-gradient(ellipse at top, #0d1424 0%, #0a0e1a 60%, #070b14 100%);
+}
+
+/* Card styles */
+.card-dark {
+  background: rgba(17, 24, 39, 0.85);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: 0.75rem;
+}
+
+.card-crimson {
+  background: rgba(139, 26, 26, 0.15);
+  border: 1px solid rgba(176, 34, 34, 0.4);
+  border-radius: 0.75rem;
+}
+
+.card-seafoam {
+  background: rgba(45, 158, 141, 0.1);
+  border: 1px solid rgba(45, 158, 141, 0.35);
+  border-radius: 0.75rem;
+}
+
+/* Pulse animation for new notes */
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(201, 168, 76, 0); }
+}
+.pulse-gold {
+  animation: pulse-gold 2s infinite;
+}
+
+/* Rain effect (subtle) */
+@keyframes rain-drop {
+  0% { transform: translateY(-10px); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 0.3; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
