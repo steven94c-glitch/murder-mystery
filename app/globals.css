@@ -89,25 +89,30 @@ h1, h2, h3, h4, h5, h6 {
 .bg-atmosphere::before {
   content: '';
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-image:
     repeating-linear-gradient(90deg, transparent 0px, rgba(0,0,0,0.3) 1px, transparent 2px, transparent 4px),
     repeating-linear-gradient(0deg, transparent 0px, rgba(212, 175, 55, 0.02) 1px, transparent 2px, transparent 4px),
     radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.04) 0%, transparent 50%);
   pointer-events: none;
-  z-index: 0;
-  backdrop-filter: blur(0.5px);
+  z-index: -1;
 }
 
 /* Aged paper texture overlay */
 .bg-atmosphere::after {
   content: '';
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-image:
     url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="4" result="noise"/></filter><rect width="4" height="4" filter="url(%23n)" opacity="0.08"/></svg>');
   pointer-events: none;
-  z-index: 0;
+  z-index: -1;
 }
 
 /* Card styles - aged theater program / wanted poster aesthetic */
