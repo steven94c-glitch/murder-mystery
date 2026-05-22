@@ -86,27 +86,48 @@ export default function HostPage() {
   if (!authenticated) {
     return (
       <div className="min-h-screen bg-atmosphere flex flex-col items-center justify-center px-4">
-        <div className="text-6xl mb-6">📺</div>
-        <h1 className="text-3xl font-serif font-bold mb-2" style={{ color: '#c9a84c' }}>
+        <div className="text-8xl mb-8 drop-shadow-lg">🏚️</div>
+        <h1 className="text-5xl font-bold mb-2 text-center" style={{ color: '#d4af37', fontFamily: "'Playfair Display', serif" }}>
           Host Screen
         </h1>
-        <p className="text-gray-400 mb-8 text-sm">For the TV — enter the host password</p>
-        <form onSubmit={handlePasswordSubmit} className="card-dark p-6 w-full max-w-sm flex flex-col gap-4">
+        <p className="text-center mb-10 text-sm" style={{ color: '#a0a0a0' }}>
+          For the TV — Enter the host password to proceed
+        </p>
+        <form onSubmit={handlePasswordSubmit} className="card-dark p-8 w-full max-w-md flex flex-col gap-5">
           <input
             type="password"
             value={passwordInput}
             onChange={(e) => setPasswordInput(e.target.value)}
             placeholder="Host password"
             autoFocus
-            className="bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white text-lg focus:outline-none focus:border-yellow-500 transition"
+            className="px-4 py-3 text-lg rounded-sm transition focus:outline-none"
+            style={{
+              background: 'rgba(26, 31, 46, 0.8)',
+              border: '1px solid rgba(212, 175, 55, 0.2)',
+              color: '#f0ead6',
+            }}
+            onFocus={(e) => {
+              e.target.style.borderColor = 'rgba(212, 175, 55, 0.5)';
+              e.target.style.boxShadow = '0 0 12px rgba(212, 175, 55, 0.2)';
+            }}
+            onBlur={(e) => {
+              e.target.style.borderColor = 'rgba(212, 175, 55, 0.2)';
+              e.target.style.boxShadow = 'none';
+            }}
           />
           {passwordError && (
-            <p className="text-red-400 text-sm text-center">{passwordError}</p>
+            <p className="text-center text-sm" style={{ color: '#d4574d' }}>
+              {passwordError}
+            </p>
           )}
           <button
             type="submit"
-            className="py-3 rounded-lg font-bold uppercase tracking-widest text-sm transition hover:scale-105 active:scale-95"
-            style={{ background: '#8b1a1a', color: '#f8d5b0' }}
+            className="py-3 rounded-sm font-bold uppercase tracking-widest text-base transition hover:scale-105 active:scale-95"
+            style={{
+              background: 'linear-gradient(135deg, #8b1a1a 0%, #5c2e2e 100%)',
+              color: '#f0ead6',
+              border: '1px solid rgba(176, 34, 34, 0.3)',
+            }}
           >
             Enter
           </button>
@@ -147,53 +168,50 @@ export default function HostPage() {
   const notVotedYet = requiredVoters.filter((name) => !state.votes[name]);
 
   return (
-    <div
-      className="min-h-screen bg-atmosphere flex flex-col"
-      style={{ fontFamily: 'Georgia, serif' }}
-    >
-      {/* ── Top bar ── */}
+    <div className="min-h-screen bg-atmosphere flex flex-col">
+      {/* ── Top bar / Header ── */}
       <div
-        className="flex items-center justify-between px-8 py-4 border-b"
-        style={{ borderColor: 'rgba(201,168,76,0.2)' }}
+        className="px-8 py-6 border-b separator-gold"
       >
-        <div>
-          <h1 className="text-2xl font-bold" style={{ color: '#c9a84c' }}>
-            Sand, Secrets &amp; Sorrow
-          </h1>
-          <p className="text-sm text-gray-500 italic">A Cape May Mystery</p>
-        </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center justify-between gap-8 max-w-7xl mx-auto">
+          <div>
+            <h1 className="text-3xl font-bold mb-1" style={{ color: '#d4af37', fontFamily: "'Playfair Display', serif" }}>
+              Sand, Secrets &amp; Sorrow
+            </h1>
+            <p className="text-sm italic" style={{ color: '#a0a0a0', fontFamily: "'Cormorant', serif" }}>
+              A Cape May Mystery
+            </p>
+          </div>
           <div className="text-right">
             <div
-              className="text-3xl font-bold"
-              style={{ color: isReveal ? '#b02222' : '#c9a84c' }}
+              className="text-5xl font-bold mb-2"
+              style={{ color: isReveal ? '#b02222' : '#d4af37', fontFamily: "'Playfair Display', serif" }}
             >
               Phase {phase}
             </div>
-            <div className="text-sm text-gray-400">{PHASE_NAMES[phase]}</div>
-          </div>
-          {lastPoll && (
-            <div className="text-xs text-gray-700 hidden sm:block">
-              ⟳ {lastPoll.toLocaleTimeString()}
+            <div className="text-base" style={{ color: '#c9a84c' }}>
+              {PHASE_NAMES[phase]}
             </div>
-          )}
+            {lastPoll && (
+              <div className="text-xs mt-2" style={{ color: '#707070' }}>
+                ⟳ {lastPoll.toLocaleTimeString()}
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
       {/* ── Main content ── */}
-      <div className="flex-1 flex flex-col items-center justify-center px-8 py-8 gap-8 max-w-5xl mx-auto w-full">
+      <div className="flex-1 flex flex-col items-center justify-center px-8 py-12 gap-10 max-w-6xl mx-auto w-full">
 
-        {/* Phase message */}
+        {/* Phase message - DRAMATIC when reveal */}
         {isReveal ? (
           <RevealBlock text={phaseInfo.tvMessage} />
         ) : (
-          <div
-            className="w-full card-dark p-8 text-center"
-            style={{ borderColor: isReveal ? 'rgba(176,34,34,0.5)' : 'rgba(201,168,76,0.3)' }}
-          >
+          <div className="card-dark p-12 text-center w-full">
             <p
-              className="text-2xl leading-relaxed font-serif"
-              style={{ color: '#e8dcc8', lineHeight: 1.7 }}
+              className="text-4xl leading-relaxed"
+              style={{ color: '#f0ead6', lineHeight: 1.8, fontFamily: "'Cormorant', serif", fontWeight: 500 }}
             >
               {phaseInfo.tvMessage}
             </p>
@@ -204,24 +222,20 @@ export default function HostPage() {
         {publicClues.length > 0 && !isReveal && (
           <div className="w-full">
             <h3
-              className="text-xs uppercase tracking-widest mb-3 text-center"
-              style={{ color: '#2d9e8d' }}
+              className="text-xs uppercase tracking-widest mb-5 text-center"
+              style={{ color: '#d4af37' }}
             >
-              Evidence on Record
+              📋 Evidence on Record
             </h3>
-            <div className="space-y-2">
+            <div className="space-y-3">
               {publicClues.map((clue, i) => (
                 <div
                   key={i}
-                  className="px-5 py-3 rounded-lg text-base"
-                  style={{
-                    background: 'rgba(45,158,141,0.08)',
-                    border: '1px solid rgba(45,158,141,0.25)',
-                    color: '#c0d8d4',
-                  }}
+                  className="evidence-card"
                 >
-                  <span className="text-seafoam mr-2">◆</span>
-                  {clue}
+                  <p className="text-lg leading-relaxed" style={{ color: '#f0ead6' }}>
+                    {clue}
+                  </p>
                 </div>
               ))}
             </div>
@@ -241,34 +255,43 @@ export default function HostPage() {
 
       {/* ── Bottom controls ── */}
       <div
-        className="flex items-center justify-between px-8 py-5 border-t gap-4"
-        style={{ borderColor: 'rgba(201,168,76,0.15)' }}
+        className="px-8 py-6 border-t separator-gold"
       >
-        <button
-          onClick={handleReset}
-          disabled={resetting}
-          className="px-4 py-2 text-xs rounded-lg uppercase tracking-widest transition hover:opacity-80"
-          style={{ background: 'rgba(60,20,20,0.5)', border: '1px solid rgba(120,40,40,0.4)', color: '#e08080' }}
-        >
-          {resetting ? 'Resetting…' : '↺ Reset Game'}
-        </button>
+        <div className="flex items-center justify-between gap-6 max-w-7xl mx-auto">
+          <button
+            onClick={handleReset}
+            disabled={resetting}
+            className="px-6 py-3 text-xs rounded-sm uppercase tracking-widest transition font-semibold"
+            style={{
+              background: 'rgba(92, 46, 46, 0.2)',
+              border: '1px solid rgba(139, 26, 26, 0.3)',
+              color: '#d4a574',
+              opacity: resetting ? 0.6 : 1,
+            }}
+          >
+            {resetting ? 'Resetting…' : '↺ Reset Game'}
+          </button>
 
-        <div className="flex items-center gap-3">
-          <div className="text-xs text-gray-600">
-            {phase < 5 ? `Next: ${PHASE_NAMES[phase + 1]}` : 'Game complete'}
+          <div className="text-center flex-1">
+            <p className="text-xs" style={{ color: '#a0a0a0' }}>
+              {phase < 5 ? `Next: ${PHASE_NAMES[phase + 1]}` : 'Game concluded'}
+            </p>
           </div>
+
           <button
             onClick={handleAdvance}
             disabled={advancing || phase >= 5}
-            className="px-8 py-4 rounded-xl font-bold text-xl uppercase tracking-widest transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed hover:scale-105 active:scale-95"
+            className="px-10 py-4 rounded-sm font-bold text-lg uppercase tracking-widest transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
             style={{
-              background: phase >= 5 ? '#333' : '#8b1a1a',
-              color: phase >= 5 ? '#666' : '#f8d5b0',
-              border: '2px solid rgba(201,168,76,0.3)',
-              minWidth: 280,
+              background: phase >= 5
+                ? 'rgba(60, 60, 60, 0.3)'
+                : 'linear-gradient(135deg, #8b1a1a 0%, #5c2e2e 100%)',
+              color: phase >= 5 ? '#707070' : '#f0ead6',
+              border: '1px solid rgba(212, 175, 55, 0.2)',
+              minWidth: 300,
             }}
           >
-            {advancing ? 'Advancing…' : phase >= 5 ? 'Game Over' : `▶ Advance to Phase ${phase + 1}`}
+            {advancing ? 'Advancing…' : phase >= 5 ? 'Game Over' : `▶ Phase ${phase + 1}`}
           </button>
         </div>
       </div>
@@ -280,19 +303,25 @@ function RevealBlock({ text }: { text: string }) {
   const lines = text.split('\n');
   return (
     <div
-      className="w-full p-8 rounded-2xl space-y-3"
+      className="w-full p-12 rounded-sm space-y-6 dramatic-reveal card-burgundy"
       style={{
-        background: 'rgba(60,10,10,0.6)',
-        border: '2px solid rgba(176,34,34,0.5)',
+        background: 'linear-gradient(135deg, rgba(92, 46, 46, 0.25) 0%, rgba(139, 26, 26, 0.15) 100%)',
+        border: '2px solid rgba(176, 34, 34, 0.35)',
       }}
     >
       {lines.map((line, i) => {
-        if (line.startsWith('EVAN DID IT')) {
+        const killerMatch = line.match(/^([A-Z\s]+) DID IT/);
+        if (killerMatch) {
           return (
             <h2
               key={i}
-              className="text-5xl font-bold text-center mb-4"
-              style={{ color: '#b02222', letterSpacing: 2 }}
+              className="text-6xl font-bold text-center mb-6"
+              style={{
+                color: '#b02222',
+                letterSpacing: '0.15em',
+                fontFamily: "'Playfair Display', serif",
+                textShadow: '0 2px 8px rgba(0, 0, 0, 0.5)',
+              }}
             >
               {line}
             </h2>
@@ -300,21 +329,22 @@ function RevealBlock({ text }: { text: string }) {
         }
         if (line.startsWith('THE EVIDENCE:')) {
           return (
-            <h3 key={i} className="text-xl font-bold mt-4" style={{ color: '#c9a84c' }}>
+            <h3 key={i} className="text-2xl font-bold mt-6 pt-4" style={{ color: '#d4af37', fontFamily: "'Playfair Display', serif" }}>
               {line}
             </h3>
           );
         }
         if (line.startsWith('•')) {
           return (
-            <p key={i} className="text-lg pl-4" style={{ color: '#c0d8d4' }}>
-              {line}
+            <p key={i} className="text-lg pl-6 relative" style={{ color: '#c0d8d4' }}>
+              <span className="absolute left-0" style={{ color: '#d4af37' }}>◆</span>
+              {line.substring(1).trim()}
             </p>
           );
         }
-        if (line.trim() === '') return <div key={i} className="h-2" />;
+        if (line.trim() === '') return <div key={i} className="h-4" />;
         return (
-          <p key={i} className="text-xl leading-relaxed" style={{ color: '#e8dcc8' }}>
+          <p key={i} className="text-xl leading-relaxed" style={{ color: '#f0ead6', fontFamily: "'Cormorant', serif" }}>
             {line}
           </p>
         );
@@ -335,37 +365,37 @@ function VoteTally({
   totalVotes: number;
 }) {
   return (
-    <div className="w-full space-y-4">
+    <div className="w-full space-y-6">
       <h3
         className="text-sm uppercase tracking-widest text-center"
-        style={{ color: '#c9a84c' }}
+        style={{ color: '#d4af37' }}
       >
         {votesRevealed ? '🗳️ Final Vote Count' : `🗳️ Voting in Progress — ${totalVotes} vote${totalVotes !== 1 ? 's' : ''} cast`}
       </h3>
 
       {votesRevealed && sortedTally.length > 0 ? (
-        <div className="space-y-2">
+        <div className="space-y-3">
           {sortedTally.map(([name, count]) => (
             <div
               key={name}
-              className="flex items-center gap-4 px-5 py-3 rounded-lg"
-              style={{ background: 'rgba(139,26,26,0.15)', border: '1px solid rgba(176,34,34,0.3)' }}
+              className="card-burgundy p-5 flex items-center gap-6"
             >
-              <span className="text-2xl font-bold w-8 text-center" style={{ color: '#b02222' }}>{count}</span>
-              <span className="text-xl font-bold" style={{ color: '#e8dcc8' }}>{name}</span>
+              <span className="text-4xl font-bold w-12 text-center" style={{ color: '#b02222' }}>{count}</span>
+              <span className="text-2xl font-bold" style={{ color: '#f0ead6' }}>{name}</span>
               <div
-                className="flex-1 rounded-full h-3"
+                className="flex-1 h-4"
                 style={{
-                  background: '#1a0808',
+                  background: 'rgba(26, 31, 46, 0.5)',
                   overflow: 'hidden',
+                  borderRadius: '2px',
                 }}
               >
                 <div
-                  className="h-full rounded-full"
+                  className="h-full"
                   style={{
                     width: `${Math.min(100, (count / totalVotes) * 100)}%`,
-                    background: '#8b1a1a',
-                    transition: 'width 0.8s ease',
+                    background: 'linear-gradient(90deg, #8b1a1a 0%, #b02222 100%)',
+                    transition: 'width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)',
                   }}
                 />
               </div>
@@ -373,18 +403,20 @@ function VoteTally({
           ))}
         </div>
       ) : !votesRevealed ? (
-        <div>
-          <p className="text-center text-gray-500 text-sm mb-3">
-            Votes are hidden until all required players have voted.
+        <div className="card-dark p-6">
+          <p className="text-center text-base mb-4" style={{ color: '#a0a0a0' }}>
+            Votes are sealed until all required players have voted.
           </p>
           {notVotedYet.length > 0 && (
-            <div className="text-center text-xs text-gray-600">
-              Still waiting on: {notVotedYet.join(', ')}
+            <div className="text-center text-sm" style={{ color: '#c9a84c' }}>
+              Awaiting: <span className="font-semibold">{notVotedYet.join(', ')}</span>
             </div>
           )}
         </div>
       ) : (
-        <p className="text-center text-gray-500">No votes cast yet.</p>
+        <p className="text-center text-base" style={{ color: '#a0a0a0' }}>
+          No votes cast yet.
+        </p>
       )}
     </div>
   );
