@@ -97,7 +97,7 @@ export const CHARACTERS: Character[] = [
   {
     name: 'Grammy',
     emoji: '👵',
-    role: 'Killer',
+    role: 'Suspect',
     bio: "Dorothy 'Grammy' Keating, 78. The beloved matriarch. She's run this Cape May beach house for 40 years with warmth, sharp wit, and an iron will. This was supposed to be another perfect family weekend.",
     secret:
       "THE KILLER. You discovered three months ago that Derek Hollis had been embezzling from your trust fund for years — over $340,000. You had your private accountant confirm it. Saturday morning, Derek arrived unannounced. He cornered you in the study and made his move: 'You expose me, and I destroy your family. Years of legal proceedings. Your entire estate tied up. Your grandchildren watching it fall apart.' You made your choice. Around 7:45 PM, while everyone transitioned from dinner to dessert, you went to the kitchen. You took two of your digoxin tablets, crushed them, and stirred them into a fresh cognac. You brought it to Derek in the sitting room. 'You look stressed,' you said. 'This might help.' He drank it. By 8:30 PM, his heart had stopped. You have spent the last hours playing the confused, grieving grandmother. But you are clearheaded. You made the right choice.",
