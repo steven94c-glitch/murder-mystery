@@ -7,17 +7,21 @@ export default function HomePage() {
 
   return (
     <main className="min-h-screen bg-atmosphere flex flex-col items-center justify-center py-12 px-4 relative">
-      {/* Atmospheric rain */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden opacity-20 select-none z-0" aria-hidden>
-        {Array.from({ length: 24 }).map((_, i) => (
+      {/* Vintage marquee lights animation */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden select-none z-0" aria-hidden>
+        {Array.from({ length: 8 }).map((_, i) => (
           <div
             key={i}
-            className="absolute w-px bg-gradient-to-b from-transparent via-blue-200 to-transparent"
+            className="absolute rounded-full"
             style={{
-              left: `${(i * 4.2) % 100}%`,
-              height: `${80 + (i * 19) % 50}px`,
-              animation: `rain-drop ${1.5 + (i * 0.18) % 1.2}s linear infinite`,
-              animationDelay: `${(i * 0.27) % 2.5}s`,
+              width: '8px',
+              height: '8px',
+              left: `${(i * 12.5) % 100}%`,
+              top: '10%',
+              background: 'rgba(212, 175, 55, 0.6)',
+              boxShadow: '0 0 12px rgba(212, 175, 55, 0.8)',
+              animation: `marquee-blink ${0.5 + (i * 0.08)}s ease-in-out infinite`,
+              animationDelay: `${(i * 0.06)}s`,
             }}
           />
         ))}
@@ -25,58 +29,80 @@ export default function HomePage() {
 
       {/* Main content wrapper */}
       <div className="relative z-10 w-full max-w-2xl">
-        {/* Title section */}
+        {/* Title section - Vintage Theater Marquee */}
         <div className="text-center mb-16">
-          <div className="mb-6 text-6xl drop-shadow-lg">🏚️</div>
-
           <div className="mb-8">
-            <h1 className="text-6xl font-bold mb-3" style={{ color: '#d4af37', fontFamily: "'Playfair Display', serif" }}>
+            {/* Ornate top border */}
+            <div className="divider-marquee mb-8">
+              <div />
+              <span className="text-sm" style={{ color: 'rgba(212, 175, 55, 0.4)' }}>✦ ✦ ✦</span>
+              <div />
+            </div>
+
+            {/* Main title - Art Deco style */}
+            <h1 className="art-deco-title text-5xl md:text-6xl mb-6" style={{
+              color: '#d4af37',
+              textShadow: '2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(212, 175, 55, 0.3)',
+              fontWeight: 700
+            }}>
               Sand, Secrets
               <br />
-              <span style={{ color: '#8b1a1a' }}>&amp; Sorrow</span>
+              <span style={{ color: '#f4d03f', fontSize: '1.1em' }}>&amp; Sorrow</span>
             </h1>
-          </div>
 
-          <div className="space-y-2 mb-6">
-            <p className="text-lg italic" style={{ color: '#f0ead6', fontFamily: "'Cormorant', serif" }}>
-              A Cape May Mystery
-            </p>
-            <div className="flex items-center justify-center gap-2 text-xs tracking-widest uppercase" style={{ color: '#c9a84c' }}>
-              <span>Grammy&apos;s Beach House</span>
-              <span className="w-1 h-1 rounded-full bg-current"></span>
-              <span>Memorial Day Weekend</span>
-              <span className="w-1 h-1 rounded-full bg-current"></span>
-              <span>Cape May, NJ</span>
+            {/* Ornate bottom border */}
+            <div className="divider-marquee mt-6 mb-8">
+              <div />
+              <span className="text-sm" style={{ color: 'rgba(212, 175, 55, 0.4)' }}>✦ ✦ ✦</span>
+              <div />
             </div>
           </div>
 
-          <div className="mt-6 pt-6 border-t separator-gold">
-            <p className="text-sm italic" style={{ color: '#2d7a6e' }}>
+          <div className="space-y-3 mb-8">
+            <p className="text-xl" style={{ color: '#f5ede0', fontFamily: "'Cormorant', serif", fontWeight: 500, letterSpacing: '0.08em' }}>
+              A Cape May Mystery
+            </p>
+            <div className="flex flex-col items-center justify-center gap-3 text-xs tracking-widest uppercase" style={{ color: '#d4a574' }}>
+              <div className="flex items-center gap-2">
+                <span>Grammy&apos;s Beach House</span>
+                <span className="w-1 h-1 rounded-full bg-current"></span>
+                <span>Memorial Day Weekend</span>
+              </div>
+              <span style={{ color: '#8b5a3c' }}>Cape May, NJ</span>
+            </div>
+          </div>
+
+          <div className="mt-8 pt-6 border-t separator-gold">
+            <p className="text-sm italic" style={{ color: '#c9a86a', fontFamily: "'Cormorant', serif" }}>
               ☁️ The rain hammers against the windows of the grand Victorian estate...
             </p>
           </div>
         </div>
 
-        {/* Character Grid */}
+        {/* Character Grid - Wanted Poster Style */}
         <div className="mb-12">
-          <h2 className="text-center text-xs uppercase tracking-widest mb-6" style={{ color: '#c9a84c' }}>
-            📋 Choose Your Character
-          </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+          <div className="text-center mb-8">
+            <div className="divider-marquee">
+              <div />
+              <span className="divider-marquee-text">Cast of Characters</span>
+              <div />
+            </div>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-5">
             {required.map((char) => (
               <Link
                 key={char.name}
                 href={`/play/${char.name.toLowerCase()}`}
-                className="character-card p-5 flex flex-col items-center gap-3 cursor-pointer group"
+                className="character-card p-6 flex flex-col items-center gap-4 cursor-pointer group"
               >
-                <div className="text-4xl group-hover:scale-110 transition-transform duration-300">
+                <div className="text-5xl group-hover:scale-125 transition-transform duration-300">
                   {char.emoji}
                 </div>
-                <div className="text-center flex-1">
-                  <p className="font-bold text-sm mb-1" style={{ color: '#d4af37' }}>
+                <div className="text-center flex-1 w-full">
+                  <p className="font-bold text-base mb-2" style={{ color: '#f4d03f', fontFamily: "'Bebas Neue', sans-serif", letterSpacing: '0.1em' }}>
                     {char.name}
                   </p>
-                  <p className="text-xs" style={{ color: '#a0a0a0' }}>
+                  <p className="text-xs uppercase tracking-widest" style={{ color: '#d4a574', fontFamily: "'Cormorant', serif" }}>
                     {char.role}
                   </p>
                 </div>
@@ -88,25 +114,28 @@ export default function HomePage() {
         {/* Optional Characters */}
         {optional.length > 0 && (
           <div className="mb-12 pb-8 border-b separator-gold">
-            <h2 className="text-center text-xs uppercase tracking-widest mb-4" style={{ color: '#808080' }}>
-              ✦ If you&apos;re here, tap your name
+            <h2 className="text-center text-xs uppercase tracking-widest mb-6" style={{ color: '#8b5a3c', fontFamily: "'Bebas Neue', sans-serif" }}>
+              ✦ Additional Guests
             </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
               {optional.map((char) => (
                 <Link
                   key={char.name}
                   href={`/play/${char.name.toLowerCase()}`}
-                  className="p-4 flex flex-col items-center gap-2 rounded-sm border transition-all duration-200 cursor-pointer opacity-70 hover:opacity-100 group"
-                  style={{ borderColor: 'rgba(212, 175, 55, 0.1)' }}
+                  className="p-5 flex flex-col items-center gap-3 transition-all duration-200 cursor-pointer opacity-75 hover:opacity-100 group"
+                  style={{
+                    border: '2px solid rgba(212, 175, 55, 0.2)',
+                    background: 'rgba(42, 42, 42, 0.5)',
+                  }}
                 >
-                  <div className="text-3xl group-hover:scale-105 transition-transform">
+                  <div className="text-4xl group-hover:scale-110 transition-transform">
                     {char.emoji}
                   </div>
                   <div className="text-center">
-                    <p className="font-bold text-xs mb-1" style={{ color: '#c9a84c' }}>
+                    <p className="font-bold text-xs mb-1" style={{ color: '#d4a574' }}>
                       {char.name}
                     </p>
-                    <p className="text-xs" style={{ color: '#707070' }}>
+                    <p className="text-xs uppercase tracking-widest" style={{ color: '#8b5a3c' }}>
                       {char.role}
                     </p>
                   </div>
@@ -116,24 +145,27 @@ export default function HomePage() {
           </div>
         )}
 
-        {/* Host Link - Prominent but Secret */}
-        <div className="flex justify-center">
+        {/* Host Link - Theater Control Room Style */}
+        <div className="flex justify-center mt-10">
           <Link
             href="/host"
-            className="inline-flex items-center gap-2 px-8 py-4 font-bold text-sm uppercase tracking-widest transition-all duration-300 cursor-pointer rounded-sm"
+            className="inline-flex items-center gap-3 px-10 py-5 font-bold text-sm uppercase tracking-widest transition-all duration-300 cursor-pointer"
             style={{
-              background: 'linear-gradient(135deg, rgba(92, 46, 46, 0.2) 0%, rgba(139, 26, 26, 0.15) 100%)',
-              border: '1px solid rgba(139, 26, 26, 0.3)',
-              color: '#d4a574',
+              background: 'linear-gradient(135deg, rgba(107, 44, 44, 0.3) 0%, rgba(139, 26, 26, 0.2) 100%)',
+              border: '2px solid rgba(212, 175, 55, 0.35)',
+              color: '#f4d03f',
+              boxShadow: '0 6px 20px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(212, 175, 55, 0.15)',
+              fontFamily: "'Bebas Neue', sans-serif",
+              letterSpacing: '0.12em'
             }}
           >
-            📺 Host Screen
+            📺 Director&apos;s Booth
           </Link>
         </div>
 
         {/* Footer instructions */}
         <div className="mt-12 pt-8 border-t separator-gold text-center">
-          <p className="text-xs" style={{ color: '#707070' }}>
+          <p className="text-xs" style={{ color: '#8b5a3c' }}>
             All characters gather in the living room · Keep your phone hidden from other players
           </p>
         </div>

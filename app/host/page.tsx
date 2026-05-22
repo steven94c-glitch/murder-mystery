@@ -82,54 +82,73 @@ export default function HostPage() {
     }
   }
 
-  // ── Password gate ────────────────────────────────────────────────────────
+  // ── Password gate - Theater Ticket Booth ────────────────────────────────────────────────────────
   if (!authenticated) {
     return (
       <div className="min-h-screen bg-atmosphere flex flex-col items-center justify-center px-4">
-        <div className="text-8xl mb-8 drop-shadow-lg">🏚️</div>
-        <h1 className="text-5xl font-bold mb-2 text-center" style={{ color: '#d4af37', fontFamily: "'Playfair Display', serif" }}>
-          Host Screen
+        {/* Marquee decoration */}
+        <div className="mb-12 text-center">
+          <div style={{ fontSize: '3rem', marginBottom: '1rem', filter: 'drop-shadow(0 0 10px rgba(212, 175, 55, 0.4))' }}>
+            🎭
+          </div>
+          <div className="divider-marquee mb-6">
+            <div />
+            <span className="divider-marquee-text">Ticket Booth</span>
+            <div />
+          </div>
+        </div>
+
+        <h1 className="art-deco-title text-5xl mb-3 text-center" style={{
+          color: '#d4af37',
+          textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
+        }}>
+          Host Control
         </h1>
-        <p className="text-center mb-10 text-sm" style={{ color: '#a0a0a0' }}>
-          For the TV — Enter the host password to proceed
+        <p className="text-center mb-12 text-sm" style={{ color: '#d4a574', fontFamily: "'Cormorant', serif" }}>
+          Director&apos;s Access Only — Enter your credentials
         </p>
-        <form onSubmit={handlePasswordSubmit} className="card-dark p-8 w-full max-w-md flex flex-col gap-5">
+
+        <form onSubmit={handlePasswordSubmit} className="card-dark p-10 w-full max-w-md flex flex-col gap-6">
           <input
             type="password"
             value={passwordInput}
             onChange={(e) => setPasswordInput(e.target.value)}
-            placeholder="Host password"
+            placeholder="Password"
             autoFocus
-            className="px-4 py-3 text-lg rounded-sm transition focus:outline-none"
+            className="px-4 py-4 text-lg transition focus:outline-none"
             style={{
-              background: 'rgba(26, 31, 46, 0.8)',
-              border: '1px solid rgba(212, 175, 55, 0.2)',
-              color: '#f0ead6',
+              background: 'rgba(42, 42, 42, 0.7)',
+              border: '2px solid rgba(212, 175, 55, 0.25)',
+              color: '#f5ede0',
+              fontFamily: "'Cormorant', serif",
             }}
             onFocus={(e) => {
               e.target.style.borderColor = 'rgba(212, 175, 55, 0.5)';
-              e.target.style.boxShadow = '0 0 12px rgba(212, 175, 55, 0.2)';
+              e.target.style.boxShadow = '0 0 16px rgba(212, 175, 55, 0.25)';
             }}
             onBlur={(e) => {
-              e.target.style.borderColor = 'rgba(212, 175, 55, 0.2)';
+              e.target.style.borderColor = 'rgba(212, 175, 55, 0.25)';
               e.target.style.boxShadow = 'none';
             }}
           />
           {passwordError && (
-            <p className="text-center text-sm" style={{ color: '#d4574d' }}>
-              {passwordError}
+            <p className="text-center text-sm" style={{ color: '#f4a090' }}>
+              ⚠️ {passwordError}
             </p>
           )}
           <button
             type="submit"
-            className="py-3 rounded-sm font-bold uppercase tracking-widest text-base transition hover:scale-105 active:scale-95"
+            className="py-4 font-bold uppercase tracking-widest text-base transition hover:scale-105 active:scale-95"
             style={{
-              background: 'linear-gradient(135deg, #8b1a1a 0%, #5c2e2e 100%)',
-              color: '#f0ead6',
-              border: '1px solid rgba(176, 34, 34, 0.3)',
+              background: 'linear-gradient(135deg, #8b1a1a 0%, #6b2c2c 100%)',
+              color: '#f5ede0',
+              border: '2px solid rgba(212, 175, 55, 0.3)',
+              boxShadow: '0 6px 16px rgba(0, 0, 0, 0.6)',
+              fontFamily: "'Bebas Neue', sans-serif",
+              letterSpacing: '0.12em'
             }}
           >
-            Enter
+            ENTER
           </button>
         </form>
       </div>
@@ -169,31 +188,29 @@ export default function HostPage() {
 
   return (
     <div className="min-h-screen bg-atmosphere flex flex-col">
-      {/* ── Top bar / Header ── */}
-      <div
-        className="px-8 py-6 border-b separator-gold"
-      >
+      {/* ── Top bar / Theater Stage Header ── */}
+      <div className="px-8 py-8 border-b separator-gold" style={{ background: 'rgba(26, 26, 26, 0.6)' }}>
         <div className="flex items-center justify-between gap-8 max-w-7xl mx-auto">
           <div>
-            <h1 className="text-3xl font-bold mb-1" style={{ color: '#d4af37', fontFamily: "'Playfair Display', serif" }}>
+            <h1 className="art-deco-title text-3xl mb-2" style={{ color: '#f4d03f' }}>
               Sand, Secrets &amp; Sorrow
             </h1>
-            <p className="text-sm italic" style={{ color: '#a0a0a0', fontFamily: "'Cormorant', serif" }}>
+            <p className="text-sm" style={{ color: '#d4a574', fontFamily: "'Cormorant', serif" }}>
               A Cape May Mystery
             </p>
           </div>
           <div className="text-right">
             <div
-              className="text-5xl font-bold mb-2"
-              style={{ color: isReveal ? '#b02222' : '#d4af37', fontFamily: "'Playfair Display', serif" }}
+              className="art-deco-title text-6xl mb-1"
+              style={{ color: isReveal ? '#f4a090' : '#f4d03f', textShadow: isReveal ? '0 0 20px rgba(244, 160, 144, 0.4)' : 'none' }}
             >
-              Phase {phase}
+              {phase}
             </div>
-            <div className="text-base" style={{ color: '#c9a84c' }}>
+            <div className="text-sm font-semibold" style={{ color: '#d4a574', fontFamily: "'Cormorant', serif", letterSpacing: '0.05em' }}>
               {PHASE_NAMES[phase]}
             </div>
             {lastPoll && (
-              <div className="text-xs mt-2" style={{ color: '#707070' }}>
+              <div className="text-xs mt-2" style={{ color: '#8b5a3c' }}>
                 ⟳ {lastPoll.toLocaleTimeString()}
               </div>
             )}
@@ -202,7 +219,7 @@ export default function HostPage() {
       </div>
 
       {/* ── Main content ── */}
-      <div className="flex-1 flex flex-col items-center justify-center px-8 py-12 gap-10 max-w-6xl mx-auto w-full">
+      <div className="flex-1 flex flex-col items-center justify-center px-8 py-12 gap-12 max-w-6xl mx-auto w-full">
 
         {/* Phase message - DRAMATIC when reveal */}
         {isReveal ? (
@@ -211,29 +228,28 @@ export default function HostPage() {
           <div className="card-dark p-12 text-center w-full">
             <p
               className="text-4xl leading-relaxed"
-              style={{ color: '#f0ead6', lineHeight: 1.8, fontFamily: "'Cormorant', serif", fontWeight: 500 }}
+              style={{ color: '#f5ede0', lineHeight: 1.9, fontFamily: "'Cormorant', serif", fontWeight: 500, letterSpacing: '0.02em' }}
             >
               {phaseInfo.tvMessage}
             </p>
           </div>
         )}
 
-        {/* Public clues */}
+        {/* Public clues - Vintage Newspaper Style */}
         {publicClues.length > 0 && !isReveal && (
           <div className="w-full">
-            <h3
-              className="text-xs uppercase tracking-widest mb-5 text-center"
-              style={{ color: '#d4af37' }}
-            >
-              📋 Evidence on Record
-            </h3>
-            <div className="space-y-3">
+            <div className="divider-marquee mb-6">
+              <div />
+              <span className="divider-marquee-text">Evidence</span>
+              <div />
+            </div>
+            <div className="space-y-4">
               {publicClues.map((clue, i) => (
                 <div
                   key={i}
                   className="evidence-card"
                 >
-                  <p className="text-lg leading-relaxed" style={{ color: '#f0ead6' }}>
+                  <p className="text-lg leading-relaxed" style={{ color: '#f5ede0', fontFamily: "'Cormorant', serif" }}>
                     {clue}
                   </p>
                 </div>
@@ -253,27 +269,27 @@ export default function HostPage() {
         )}
       </div>
 
-      {/* ── Bottom controls ── */}
-      <div
-        className="px-8 py-6 border-t separator-gold"
-      >
+      {/* ── Bottom controls - Theater Stage Controls ── */}
+      <div className="px-8 py-8 border-t separator-gold" style={{ background: 'rgba(26, 26, 26, 0.6)' }}>
         <div className="flex items-center justify-between gap-6 max-w-7xl mx-auto">
           <button
             onClick={handleReset}
             disabled={resetting}
-            className="px-6 py-3 text-xs rounded-sm uppercase tracking-widest transition font-semibold"
+            className="px-8 py-3 text-xs uppercase tracking-widest transition font-semibold"
             style={{
-              background: 'rgba(92, 46, 46, 0.2)',
-              border: '1px solid rgba(139, 26, 26, 0.3)',
+              background: 'rgba(107, 44, 44, 0.25)',
+              border: '2px solid rgba(212, 175, 55, 0.2)',
               color: '#d4a574',
               opacity: resetting ? 0.6 : 1,
+              fontFamily: "'Bebas Neue', sans-serif",
+              letterSpacing: '0.1em'
             }}
           >
-            {resetting ? 'Resetting…' : '↺ Reset Game'}
+            {resetting ? 'Resetting…' : '↺ Reset'}
           </button>
 
           <div className="text-center flex-1">
-            <p className="text-xs" style={{ color: '#a0a0a0' }}>
+            <p className="text-xs" style={{ color: '#8b5a3c', fontFamily: "'Cormorant', serif" }}>
               {phase < 5 ? `Next: ${PHASE_NAMES[phase + 1]}` : 'Game concluded'}
             </p>
           </div>
@@ -281,14 +297,17 @@ export default function HostPage() {
           <button
             onClick={handleAdvance}
             disabled={advancing || phase >= 5}
-            className="px-10 py-4 rounded-sm font-bold text-lg uppercase tracking-widest transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
+            className="px-12 py-5 font-bold text-lg uppercase tracking-widest transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
             style={{
               background: phase >= 5
                 ? 'rgba(60, 60, 60, 0.3)'
-                : 'linear-gradient(135deg, #8b1a1a 0%, #5c2e2e 100%)',
-              color: phase >= 5 ? '#707070' : '#f0ead6',
-              border: '1px solid rgba(212, 175, 55, 0.2)',
-              minWidth: 300,
+                : 'linear-gradient(135deg, #8b1a1a 0%, #6b2c2c 100%)',
+              color: phase >= 5 ? '#707070' : '#f5ede0',
+              border: '2px solid rgba(212, 175, 55, 0.3)',
+              boxShadow: phase >= 5 ? 'none' : '0 8px 24px rgba(0, 0, 0, 0.6)',
+              minWidth: 320,
+              fontFamily: "'Bebas Neue', sans-serif",
+              letterSpacing: '0.12em'
             }}
           >
             {advancing ? 'Advancing…' : phase >= 5 ? 'Game Over' : `▶ Phase ${phase + 1}`}
@@ -303,10 +322,11 @@ function RevealBlock({ text }: { text: string }) {
   const lines = text.split('\n');
   return (
     <div
-      className="w-full p-12 rounded-sm space-y-6 dramatic-reveal card-burgundy"
+      className="w-full p-16 space-y-8 dramatic-reveal card-burgundy"
       style={{
-        background: 'linear-gradient(135deg, rgba(92, 46, 46, 0.25) 0%, rgba(139, 26, 26, 0.15) 100%)',
-        border: '2px solid rgba(176, 34, 34, 0.35)',
+        background: 'linear-gradient(135deg, rgba(107, 44, 44, 0.25) 0%, rgba(139, 26, 26, 0.15) 100%)',
+        border: '3px solid rgba(212, 175, 55, 0.4)',
+        boxShadow: '0 0 40px rgba(212, 175, 55, 0.2), inset 0 0 40px rgba(139, 26, 26, 0.1)',
       }}
     >
       {lines.map((line, i) => {
@@ -315,12 +335,12 @@ function RevealBlock({ text }: { text: string }) {
           return (
             <h2
               key={i}
-              className="text-6xl font-bold text-center mb-6"
+              className="text-7xl font-bold text-center mb-8 art-deco-title"
               style={{
-                color: '#b02222',
-                letterSpacing: '0.15em',
-                fontFamily: "'Playfair Display', serif",
-                textShadow: '0 2px 8px rgba(0, 0, 0, 0.5)',
+                color: '#f4a090',
+                letterSpacing: '0.2em',
+                fontFamily: "'Bebas Neue', sans-serif",
+                textShadow: '0 4px 16px rgba(244, 160, 144, 0.5), 2px 2px 8px rgba(0, 0, 0, 0.8)',
               }}
             >
               {line}
@@ -329,22 +349,22 @@ function RevealBlock({ text }: { text: string }) {
         }
         if (line.startsWith('THE EVIDENCE:')) {
           return (
-            <h3 key={i} className="text-2xl font-bold mt-6 pt-4" style={{ color: '#d4af37', fontFamily: "'Playfair Display', serif" }}>
+            <h3 key={i} className="text-3xl font-bold mt-8 pt-6 art-deco-title" style={{ color: '#f4d03f', fontFamily: "'Bebas Neue', sans-serif", letterSpacing: '0.1em' }}>
               {line}
             </h3>
           );
         }
         if (line.startsWith('•')) {
           return (
-            <p key={i} className="text-lg pl-6 relative" style={{ color: '#c0d8d4' }}>
-              <span className="absolute left-0" style={{ color: '#d4af37' }}>◆</span>
+            <p key={i} className="text-lg pl-8 relative" style={{ color: '#f5ede0', fontFamily: "'Cormorant', serif", lineHeight: 1.8 }}>
+              <span className="absolute left-0" style={{ color: '#f4d03f', fontSize: '1.2em' }}>◆</span>
               {line.substring(1).trim()}
             </p>
           );
         }
-        if (line.trim() === '') return <div key={i} className="h-4" />;
+        if (line.trim() === '') return <div key={i} className="h-6" />;
         return (
-          <p key={i} className="text-xl leading-relaxed" style={{ color: '#f0ead6', fontFamily: "'Cormorant', serif" }}>
+          <p key={i} className="text-2xl leading-relaxed" style={{ color: '#f5ede0', fontFamily: "'Cormorant', serif", lineHeight: 1.8 }}>
             {line}
           </p>
         );
@@ -365,36 +385,38 @@ function VoteTally({
   totalVotes: number;
 }) {
   return (
-    <div className="w-full space-y-6">
-      <h3
-        className="text-sm uppercase tracking-widest text-center"
-        style={{ color: '#d4af37' }}
-      >
-        {votesRevealed ? '🗳️ Final Vote Count' : `🗳️ Voting in Progress — ${totalVotes} vote${totalVotes !== 1 ? 's' : ''} cast`}
-      </h3>
+    <div className="w-full space-y-8">
+      <div className="text-center">
+        <h3 className="art-deco-title text-lg" style={{ color: '#f4d03f', letterSpacing: '0.15em' }}>
+          {votesRevealed ? '🗳️ FINAL BALLOT' : `🗳️ VOTES CASTING — ${totalVotes} CAST`}
+        </h3>
+      </div>
 
       {votesRevealed && sortedTally.length > 0 ? (
-        <div className="space-y-3">
+        <div className="space-y-4">
           {sortedTally.map(([name, count]) => (
             <div
               key={name}
-              className="card-burgundy p-5 flex items-center gap-6"
+              className="card-burgundy p-6 flex items-center gap-8"
+              style={{
+                background: 'linear-gradient(90deg, rgba(139, 26, 26, 0.2) 0%, rgba(107, 44, 44, 0.15) 100%)',
+              }}
             >
-              <span className="text-4xl font-bold w-12 text-center" style={{ color: '#b02222' }}>{count}</span>
-              <span className="text-2xl font-bold" style={{ color: '#f0ead6' }}>{name}</span>
+              <span className="art-deco-title text-5xl w-16 text-center" style={{ color: '#f4a090' }}>{count}</span>
+              <span className="text-2xl font-semibold flex-1" style={{ color: '#f5ede0', fontFamily: "'Playfair Display', serif" }}>{name}</span>
               <div
-                className="flex-1 h-4"
+                className="w-32 h-5"
                 style={{
-                  background: 'rgba(26, 31, 46, 0.5)',
+                  background: 'rgba(26, 26, 26, 0.7)',
                   overflow: 'hidden',
-                  borderRadius: '2px',
+                  border: '1px solid rgba(212, 175, 55, 0.2)',
                 }}
               >
                 <div
                   className="h-full"
                   style={{
                     width: `${Math.min(100, (count / totalVotes) * 100)}%`,
-                    background: 'linear-gradient(90deg, #8b1a1a 0%, #b02222 100%)',
+                    background: 'linear-gradient(90deg, #8b1a1a 0%, #f4a090 100%)',
                     transition: 'width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)',
                   }}
                 />
@@ -403,18 +425,18 @@ function VoteTally({
           ))}
         </div>
       ) : !votesRevealed ? (
-        <div className="card-dark p-6">
-          <p className="text-center text-base mb-4" style={{ color: '#a0a0a0' }}>
-            Votes are sealed until all required players have voted.
+        <div className="card-dark p-8">
+          <p className="text-center text-base mb-6" style={{ color: '#d4a574', fontFamily: "'Cormorant', serif" }}>
+            Ballots are sealed until all required players have cast their votes.
           </p>
           {notVotedYet.length > 0 && (
-            <div className="text-center text-sm" style={{ color: '#c9a84c' }}>
+            <div className="text-center text-sm" style={{ color: '#f4d03f', fontFamily: "'Bebas Neue', sans-serif", letterSpacing: '0.1em' }}>
               Awaiting: <span className="font-semibold">{notVotedYet.join(', ')}</span>
             </div>
           )}
         </div>
       ) : (
-        <p className="text-center text-base" style={{ color: '#a0a0a0' }}>
+        <p className="text-center text-base" style={{ color: '#8b5a3c' }}>
           No votes cast yet.
         </p>
       )}

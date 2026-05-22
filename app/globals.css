@@ -1,22 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:wght@400;600;700&family=Cormorant:wght@400;500;600&family=Cinzel:wght@400;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  /* Dark moody Victorian palette */
-  --charcoal: #0f1419;
-  --charcoal-light: #1a1f2e;
+  /* 1920s Boardwalk Empire palette */
+  --charcoal: #1a1a1a;
+  --charcoal-light: #2a2a2a;
+  --sepia: #d4a574;
+  --sepia-light: #c9a86a;
   --gold-primary: #d4af37;
-  --gold-secondary: #c9a84c;
-  --teal-dark: #1a3a52;
-  --teal-accent: #2d7a6e;
-  --burgundy: #5c2e2e;
+  --gold-secondary: #f4d03f;
+  --burgundy: #6b2c2c;
   --burgundy-light: #8b1a1a;
-  --cream: #f0ead6;
-  --seafoam: #2d9e8d;
-  --seafoam-light: #3ab8a5;
+  --cream: #f5ede0;
+  --rust: #8b5a3c;
+  --aged-paper: #e8dcc8;
 }
 
 * {
@@ -27,14 +27,22 @@ html,
 body {
   background-color: var(--charcoal);
   color: var(--cream);
-  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+  font-family: 'Cormorant', serif;
   min-height: 100vh;
 }
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Playfair Display', 'Cormorant', serif;
-  letter-spacing: 0.05em;
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 0.08em;
+}
+
+/* Art Deco headers */
+.art-deco-title {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
 /* Scrollbar styling */
@@ -70,10 +78,12 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--teal-accent);
 }
 
-/* Atmospheric background gradient with texture */
+/* Atmospheric background - weathered boardwalk wood aesthetic */
 .bg-atmosphere {
-  background: linear-gradient(135deg, var(--charcoal) 0%, var(--charcoal-light) 50%, var(--teal-dark) 100%);
+  background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 30%, #2a2a2a 60%, #1a1a1a 100%);
+  background-attachment: fixed;
   position: relative;
+  overflow-x: hidden;
 }
 
 .bg-atmosphere::before {
@@ -81,66 +91,120 @@ h1, h2, h3, h4, h5, h6 {
   position: fixed;
   inset: 0;
   background-image:
-    radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(26, 58, 82, 0.05) 0%, transparent 50%);
+    repeating-linear-gradient(90deg, transparent 0px, rgba(0,0,0,0.3) 1px, transparent 2px, transparent 4px),
+    repeating-linear-gradient(0deg, transparent 0px, rgba(212, 175, 55, 0.02) 1px, transparent 2px, transparent 4px),
+    radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.04) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+  backdrop-filter: blur(0.5px);
+}
+
+/* Aged paper texture overlay */
+.bg-atmosphere::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="4" result="noise"/></filter><rect width="4" height="4" filter="url(%23n)" opacity="0.08"/></svg>');
   pointer-events: none;
   z-index: 0;
 }
 
-/* Card styles - elegant evidence/dossier aesthetic */
+/* Card styles - aged theater program / wanted poster aesthetic */
 .card-dark {
-  background: rgba(26, 31, 46, 0.8);
-  border: 1px solid rgba(212, 175, 55, 0.25);
-  border-radius: 0.5rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(212, 175, 55, 0.1);
-  backdrop-filter: blur(8px);
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.85) 0%, rgba(42, 42, 42, 0.7) 100%);
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  border-radius: 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(212, 175, 55, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  position: relative;
+}
+
+.card-dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(0deg, transparent 0px, rgba(212, 175, 55, 0.01) 1px, transparent 2px),
+    repeating-linear-gradient(90deg, transparent 0px, rgba(0,0,0,0.02) 1px, transparent 2px);
+  pointer-events: none;
+  border-radius: 0;
 }
 
 .card-dark:hover {
-  border-color: rgba(212, 175, 55, 0.4);
-  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(212, 175, 55, 0.15);
+  border-color: rgba(212, 175, 55, 0.5);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(212, 175, 55, 0.2);
 }
 
 .card-burgundy {
-  background: rgba(92, 46, 46, 0.12);
-  border: 1px solid rgba(176, 34, 34, 0.35);
-  border-radius: 0.5rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(176, 34, 34, 0.1);
+  background: linear-gradient(135deg, rgba(107, 44, 44, 0.2) 0%, rgba(26, 26, 26, 0.85) 100%);
+  border: 2px solid rgba(212, 175, 55, 0.4);
+  border-radius: 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(176, 34, 34, 0.2);
+  position: relative;
+}
+
+.card-burgundy::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent 0px, rgba(139, 26, 26, 0.02) 1px, transparent 2px);
+  pointer-events: none;
 }
 
 .card-burgundy:hover {
-  border-color: rgba(176, 34, 34, 0.5);
-  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
+  border-color: rgba(212, 175, 55, 0.6);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.8);
 }
 
 .card-teal {
-  background: rgba(45, 122, 110, 0.08);
-  border: 1px solid rgba(45, 122, 110, 0.3);
-  border-radius: 0.5rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(45, 122, 110, 0.1);
+  background: linear-gradient(135deg, rgba(45, 122, 110, 0.12) 0%, rgba(26, 26, 26, 0.8) 100%);
+  border: 2px solid rgba(58, 184, 165, 0.35);
+  border-radius: 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(58, 184, 165, 0.1);
+  position: relative;
+}
+
+.card-teal::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent 0px, rgba(58, 184, 165, 0.02) 1px, transparent 2px);
+  pointer-events: none;
 }
 
 .card-teal:hover {
-  border-color: rgba(45, 122, 110, 0.45);
-  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
+  border-color: rgba(58, 184, 165, 0.5);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.8);
 }
 
-/* Enhanced evidence card */
+/* Evidence card - vintage newspaper clipping aesthetic */
 .evidence-card {
-  background: linear-gradient(135deg, rgba(26, 58, 82, 0.15) 0%, rgba(26, 31, 46, 0.8) 100%);
-  border: 1px solid rgba(212, 175, 55, 0.2);
-  border-left: 3px solid var(--gold-secondary);
-  border-radius: 0.25rem;
+  background: linear-gradient(135deg, rgba(228, 200, 160, 0.08) 0%, rgba(26, 26, 26, 0.85) 100%);
+  border: 2px solid rgba(212, 175, 55, 0.35);
+  border-left: 4px solid rgba(212, 175, 55, 0.6);
+  border-radius: 0;
   padding: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(212, 175, 55, 0.1);
+  position: relative;
 }
 
-/* Character card - mugshot style */
+.evidence-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent 0px, rgba(0,0,0,0.02) 1px, transparent 2px);
+  pointer-events: none;
+}
+
+/* Character card - vintage wanted poster / theater cast card */
 .character-card {
-  background: linear-gradient(135deg, rgba(26, 31, 46, 0.9) 0%, rgba(26, 58, 82, 0.6) 100%);
-  border: 2px solid rgba(212, 175, 55, 0.15);
-  border-radius: 0.25rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(212, 175, 55, 0.1);
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(42, 42, 42, 0.75) 100%);
+  border: 3px solid rgba(212, 175, 55, 0.25);
+  border-radius: 0;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(212, 175, 55, 0.12),
+              inset 0 -2px 0 rgba(0, 0, 0, 0.5),
+              0 0 0 1px rgba(212, 175, 55, 0.1);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
@@ -150,19 +214,36 @@ h1, h2, h3, h4, h5, h6 {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(45deg, transparent 30%, rgba(212, 175, 55, 0.05) 50%, transparent 70%);
-  opacity: 0;
+  background:
+    linear-gradient(135deg, transparent 0%, rgba(212, 175, 55, 0.03) 50%, transparent 100%),
+    repeating-linear-gradient(0deg, transparent 0px, rgba(0,0,0,0.03) 1px, transparent 2px);
+  opacity: 1;
   transition: opacity 0.3s;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .character-card:hover {
-  border-color: rgba(212, 175, 55, 0.3);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(212, 175, 55, 0.15);
-  transform: translateY(-2px);
+  border-color: rgba(212, 175, 55, 0.45);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(212, 175, 55, 0.2);
+  transform: translateY(-4px);
 }
 
-.character-card:hover::before {
-  opacity: 1;
+.character-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Marquee light blink animation */
+@keyframes marquee-blink {
+  0%, 100% {
+    opacity: 0.3;
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.9);
+  }
 }
 
 /* Pulse animation for new notes */
@@ -199,8 +280,48 @@ h1, h2, h3, h4, h5, h6 {
   animation: dramatic-reveal 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Elegant separator */
+/* Art Deco separator with ornate detail */
 .separator-gold {
-  border-top: 1px solid rgba(212, 175, 55, 0.2);
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+  border-top: 2px solid rgba(212, 175, 55, 0.3);
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(212, 175, 55, 0.1);
+  position: relative;
+}
+
+.separator-gold::after {
+  content: '◆ ◆ ◆';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  color: rgba(212, 175, 55, 0.25);
+  background: var(--charcoal);
+  padding: 0 0.75rem;
+}
+
+/* Theater marquee style divider */
+.divider-marquee {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.divider-marquee::before,
+.divider-marquee::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+}
+
+.divider-marquee-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: rgba(212, 175, 55, 0.5);
+  text-transform: uppercase;
 }
