@@ -1,5 +1,19 @@
 import type { Character, PhaseInfo } from './types';
 
+// Helper functions for character slug generation (for routing)
+export function getCharacterSlug(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[()]/g, '') // Remove parentheses
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/--+/g, '-') // Replace multiple hyphens with single
+    .trim();
+}
+
+export function findCharacterBySlug(slug: string): Character | undefined {
+  return CHARACTERS.find((c) => getCharacterSlug(c.name) === slug);
+}
+
 export const GAME_TITLE = '🎨 The Gilded Deception: A Cape May Art Gala Mystery';
 export const SETTING =
   "Arabella Ashford-Cross's exclusive Cape May estate, a lavish 1920s mansion. An intimate weekend gala celebrating the acquisition of a priceless Impressionist masterpiece. Rain all weekend.";

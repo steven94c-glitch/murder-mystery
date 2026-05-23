@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { CHARACTERS, GAME_TITLE } from '@/lib/game-data';
+import { CHARACTERS, GAME_TITLE, getCharacterSlug } from '@/lib/game-data';
 
 export default function HomePage() {
   const required = CHARACTERS.filter((c) => !c.isOptional && !c.isVictim);
@@ -92,7 +92,7 @@ export default function HomePage() {
             {required.map((char) => (
               <Link
                 key={char.name}
-                href={`/play/${char.name.toLowerCase()}`}
+                href={`/play/${getCharacterSlug(char.name)}`}
                 className="character-card p-6 flex flex-col items-center gap-4 cursor-pointer group"
               >
                 <div className="text-5xl group-hover:scale-125 transition-transform duration-300">
@@ -121,7 +121,7 @@ export default function HomePage() {
               {optional.map((char) => (
                 <Link
                   key={char.name}
-                  href={`/play/${char.name.toLowerCase()}`}
+                  href={`/play/${getCharacterSlug(char.name)}`}
                   className="p-5 flex flex-col items-center gap-3 transition-all duration-200 cursor-pointer opacity-75 hover:opacity-100 group"
                   style={{
                     border: '2px solid rgba(212, 175, 55, 0.2)',

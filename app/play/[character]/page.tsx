@@ -7,6 +7,7 @@ import {
   CHARACTERS,
   getCumulativePublicClues,
   getPhaseInfo,
+  findCharacterBySlug,
 } from '@/lib/game-data';
 
 const PHASE_HELP: Record<number, string> = {
@@ -25,11 +26,9 @@ type TabId = 'secret' | 'clues' | 'evidence' | 'notes' | 'vote';
 export default function PlayerPage() {
   const params = useParams();
   const router = useRouter();
-  const rawCharName = typeof params.character === 'string' ? params.character : '';
+  const rawCharSlug = typeof params.character === 'string' ? params.character : '';
 
-  const character = CHARACTERS.find(
-    (c) => c.name.toLowerCase() === rawCharName.toLowerCase()
-  );
+  const character = findCharacterBySlug(rawCharSlug);
 
   const [state, setState] = useState<GameState | null>(null);
   const [activeTab, setActiveTab] = useState<TabId>('secret');
