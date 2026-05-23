@@ -158,7 +158,7 @@ export const PHASES: PhaseInfo[] = [
 
 export const CHARACTERS: Character[] = [
   {
-    name: 'Arabella Ashford-Cross',
+    name: 'Arabella Ashford-Cross (Grammy)',
     emoji: '👑',
     role: 'Guest',
     bio: "Arabella Ashford-Cross (Grammy), 72. The legendary hostess of Cape May's art world for forty years. She commands attention effortlessly — impeccably groomed, perfectly poised, always knows exactly what to say. She's celebrating the acquisition of a priceless Impressionist masterpiece this weekend, which she believes will cement her legacy as the greatest collector of her generation. People either admire or fear her, sometimes both. She has an uncanny ability to read people and always seems to know more than she's letting on.\n\n*Characteristic phrases:* \"That's not how this world works,\" and \"Everything must be perfect.\" She speaks with certainty and expects obedience. She rarely admits doubt.",
@@ -172,7 +172,7 @@ export const CHARACTERS: Character[] = [
     },
   },
   {
-    name: 'Vladimir Karpov',
+    name: 'Vladimir Karpov (Derek)',
     emoji: '🎨',
     role: 'Guest',
     bio: "Vladimir Karpov (Derek), 52. A sophisticated art dealer, critic, and authenticator with a mysterious past and connections to the international art world. Suave, impeccably dressed, with an air of knowing something others don't. His charm is calculated. His smile suggests secrets. He moves through rooms with the confidence of someone who holds leverage.",
@@ -186,7 +186,7 @@ export const CHARACTERS: Character[] = [
     },
   },
   {
-    name: 'Vivienne Dumont',
+    name: 'Vivienne Dumont (Liz)',
     emoji: '🎭',
     role: 'Guest',
     bio: "Vivienne Dumont (Liz), 35. A glamorous jazz singer known throughout the Northeast for her sultry voice and mysterious allure. She performs at exclusive venues and mingles easily with wealthy patrons. She's observant, intuitive, and excellent at reading people. She laughs readily and makes everyone feel like they're in on a secret. Her beauty is undeniable, but it's her presence that captivates.\n\n*Characteristic phrases:* \"I noticed something interesting,\" and \"Darling, you look terrified.\" She says things with casual observation that somehow land like accusations. She tends to use her charm to extract information from people.",
@@ -200,7 +200,7 @@ export const CHARACTERS: Character[] = [
     },
   },
   {
-    name: 'Maximilian Creed',
+    name: 'Maximilian Creed (Steve)',
     emoji: '🎪',
     role: 'Guest',
     bio: "Maximilian Creed (Steve), 48. A witty, observant British playwright and director, known for sharp dialogue and darker themes. He's theatrical in manner but analytical in mind. He notices inconsistencies in people's stories and points them out with cutting humor. His laugh is sharp, his observations sharper. He speaks with a precise British accent that somehow makes accusations sound like compliments.",
@@ -214,7 +214,7 @@ export const CHARACTERS: Character[] = [
     },
   },
   {
-    name: 'Evangeline Beaumont',
+    name: 'Evangeline Beaumont (Annie)',
     emoji: '💎',
     role: 'Guest',
     bio: "Evangeline Beaumont (Annie), 24. A young heiress with old money and minimal life experience. Sheltered, naive, beautiful in an ethereal way. She speaks softly, laughs at things she doesn't quite understand, and seems perpetually anxious. She defers to authority figures and hides her intelligence behind an air of innocence. Her background is aristocratic, her future predetermined — or at least it was before this weekend.",
@@ -228,7 +228,7 @@ export const CHARACTERS: Character[] = [
     },
   },
   {
-    name: 'Constantine Blackwell',
+    name: 'Constantine Blackwell (John)',
     emoji: '🔎',
     role: 'Guest',
     bio: "Constantine Blackwell (John), 55. A private investigator and security consultant hired by wealthy clients. Quiet, meticulous, with an air of knowing more than he's saying. He observes rather than participates. His manner is precise and professional. He has a habit of asking questions that reveal inconsistencies in people's stories. He speaks deliberately, measuring each word.",
@@ -242,7 +242,7 @@ export const CHARACTERS: Character[] = [
     },
   },
   {
-    name: 'Josephine Marchmont',
+    name: 'Josephine Marchmont (Kelly)',
     emoji: '📰',
     role: 'Guest',
     bio: "Josephine Marchmont (Kelly), 40. A society gossip columnist and socialite who makes her living knowing everyone's secrets and publishing carefully worded exposés. She's charming but predatory, collecting information like currency. She laughs easily and makes people feel comfortable before extracting their secrets. Her charm is weapon-sharp.",
@@ -256,7 +256,7 @@ export const CHARACTERS: Character[] = [
     },
   },
   {
-    name: 'Ludovic Steele',
+    name: 'Ludovic Steele (Clark)',
     emoji: '🎩',
     role: 'Guest',
     bio: "Ludovic Steele (Clark), 38. A charming con artist and sophisticated criminal operating in the high-end art world. Handsome, witty, with an air of danger disguised as charm. He's excellent at reading people and playing whatever role they need him to be. His smile is disarming. His stories are always believable. His true intentions are always hidden.",
@@ -270,7 +270,7 @@ export const CHARACTERS: Character[] = [
     },
   },
   {
-    name: 'Margot Silvain',
+    name: 'Margot Silvain (Nan)',
     emoji: '🍷',
     role: 'Guest',
     bio: "Margot Silvain (Nan), 48. A sophisticated woman with connections to organized crime and black market operations. She moves between legitimate business and illegal enterprise with ease. She's elegant, poised, and speaks with measured precision. She notices everything and forgets nothing. Her smile is knowing.",
@@ -284,7 +284,7 @@ export const CHARACTERS: Character[] = [
     },
   },
   {
-    name: 'Quinton Darling',
+    name: 'Quinton Darling (Doug)',
     emoji: '🌟',
     role: 'Guest',
     bio: "Quinton Darling (Doug), 60. A wealthy aesthete and collector of fine things — art, wine, music, experiences. He's cultured, gossipy, and perpetually amused by the drama around him. He speaks with dry wit and observes human behavior like it's his personal entertainment. His laugh is quick and sharp. He notices everything.",
@@ -298,7 +298,7 @@ export const CHARACTERS: Character[] = [
     },
   },
   {
-    name: 'Celestine Vanderbilt',
+    name: 'Celestine Vanderbilt (Evan)',
     emoji: '🏰',
     role: 'Guest',
     bio: "Celestine Vanderbilt (Evan), 52. A wealthy collector and rival of Arabella, competing for prestige in the art world. She's elegant, ambitious, and driven by a need to win. She speaks with confidence, makes sharp observations about others' failings, and takes satisfaction in their struggles. Her competitiveness is barely concealed.",
