@@ -1,6 +1,6 @@
 import type { Character, PhaseInfo } from './types';
 
-export const GAME_TITLE = 'The Gilded Deception: A Cape May Art Gala Mystery';
+export const GAME_TITLE = '🎨 The Gilded Deception: A Cape May Art Gala Mystery';
 export const SETTING =
   "Arabella Ashford-Cross's exclusive Cape May estate, a lavish 1920s mansion. An intimate weekend gala celebrating the acquisition of a priceless Impressionist masterpiece. Rain all weekend.";
 export const VICTIM_NAME = 'Vladimir Karpov';
