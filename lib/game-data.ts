@@ -326,6 +326,20 @@ export const CHARACTERS: Character[] = [
       3: "I wanted Vladimir dead. But I didn't have the courage to act. Arabella did.",
     },
   },
+  {
+    name: 'Helena Ashworth (Kara)',
+    emoji: '🖼️',
+    role: 'Guest',
+    bio: "Helena Ashworth (Kara), 48. A respected art museum director and authenticator who oversees major collections for a prestigious institution. Meticulous, professional, with an eye for detail that misses nothing. She speaks with quiet authority and has spent her career building credibility in the art world. Her reputation is everything to her.",
+    secret:
+      "You've been the director of the Metropolitan Modern Art Museum for 12 years. Your reputation is spotless. Your eye for authentication is trusted throughout the art world.\n\nThree months ago, you were contacted by a colleague who suspected that several pieces in Arabella Ashford-Cross's collection were forgeries. You began investigating independently and discovered the truth: at least 8 paintings Arabella claims are priceless masterpieces are sophisticated frauds.\n\nYou gathered documentation and planned to publish a peer-reviewed paper exposing the forgeries and the network behind them. This would have cemented your legacy as the authenticator who uncovered one of the largest art fraud schemes in history.\n\nWHAT VLADIMIR KNEW: Vladimir discovered your investigation. He had his own documentation of the same forgery network. He was planning to go public with his findings before your paper could be published, which would steal your credit and your legacy. He told you Saturday: 'I'm publishing this first. Your research will be secondary to mine.'\n\nYou had invested months in this investigation. Your career, your reputation, your legacy hung in the balance. Vladimir was going to take it all.\n\nAround 8:00 PM, you were in the hallway near the library. You saw Arabella invite Vladimir in privately. You heard nothing for a few minutes. Then you saw Arabella exit, looking peaceful and resolved.",
+    alibi: 'I was reviewing notes in the library study most of the evening, working on my research.',
+    phaseClues: {
+      1: "I came to this gala to observe Arabella's collection. I was planning something that would change everything.",
+      2: "Vladimir discovered my investigation. He was planning to publish his findings before my research. I had everything to lose.",
+      3: "I watched Arabella and Vladimir go to the library. She came out alone, looking like someone who'd made a difficult choice.",
+    },
+  },
 ];
 
 export function getCharacterByName(name: string): Character | undefined {
